@@ -37,11 +37,16 @@ fi
 echo "Installing ansible for user"
 python -m pip install --user ansible
 
+echo ""
+echo "Installing ansible-lint"
+python3 -m pip install --user ansible-lint
+
 echo "Checking versions of installed software:"
 echo ""
 pythonver="$(python -V 2>&1)"
 pipver="$(pip3 -V 2>&1)"
 ansiblever="$(ansible --version 2>&1)"
+ansiblelint="$(ansible-lint --version 2>&1)"
 
 echo "Ansible sanity test.."
 echo ""
@@ -51,4 +56,5 @@ echo ""
 echo "Python: $pythonver"
 echo "Pip: $pipver"
 echo "Ansible: $ansiblever"
+echo "Ansible-lint: $ansiblelint"
 echo "End!"
