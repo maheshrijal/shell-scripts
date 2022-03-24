@@ -1,6 +1,5 @@
 #!/bin/bash
-if [[ `which yum` ]]; then
-   IS_RHEL=1
+if [[ $(which yum) ]]; then
    echo "System is RHEL, using yum to install pip3"
    sudo yum check-update
 
@@ -11,8 +10,7 @@ if [[ `which yum` ]]; then
    echo "Installinig pip"
    yum install -y python3-pip
 
-elif [[ `which apt` ]]; then
-   IS_UBUNTU=1
+elif [[ $(which apt) ]]; then
    echo "System is Debian, using apt for installing pip3"
    echo "updating apt cache"
    sudo apt update
@@ -28,33 +26,39 @@ elif [[ `which apt` ]]; then
    sudo apt install python3-pip
 
 else
-   IS_UNKNOWN=1
    echo "Script works on debain or RedHat based systems!"
    echo "Exit!"
    exit 0
 fi
 
 echo "Installing ansible for user"
-python -m pip install --user ansible
+python3 -m pip install --user ansible
 
-echo ""
-echo "Installing ansible-lint"
+echo "Install ansible-lint for user"
 python3 -m pip install --user ansible-lint
 
-echo "Checking versions of installed software:"
+echo "Install yamllint for user"
+python3 -m pip install --user yamllint
+
+
+#Checking version of tools
 echo ""
-pythonver="$(python -V 2>&1)"
+pythonver="$(python3 -V 2>&1)"
 pipver="$(pip3 -V 2>&1)"
 ansiblever="$(ansible --version 2>&1)"
-ansiblelint="$(ansible-lint --version 2>&1)"
+ansiblelint="$( ansible-lint --version 2>&1)"
+yamllint="$( yamllint --version 2>&1)"
 
 echo "Ansible sanity test.."
 echo ""
 ansible localhost -m ping
 echo ""
-
+echo "Versions:"
+echo ""
 echo "Python: $pythonver"
 echo "Pip: $pipver"
 echo "Ansible: $ansiblever"
-echo "Ansible-lint: $ansiblelint"
+echo "ansible-lint: $ansiblelint"
+echo "yamllint: $yamllint"
+
 echo "End!"
