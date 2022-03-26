@@ -1,3 +1,4 @@
+---
 - name: Shell Linter
   uses: azohra/shell-linter@v0.6.0
   jobs:
