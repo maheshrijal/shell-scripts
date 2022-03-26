@@ -1,4 +1,4 @@
-
+[![shell-check Actions Status](https://github.com/maheshrjl/shell-scripts/.github/workflows/shell-check.yml/badge.svg)](https://github.com/maheshrjl/shell-scripts/actions)
 
 ## shell-scripts to automate stuff
 
