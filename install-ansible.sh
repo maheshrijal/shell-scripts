@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 if [[ $(which yum) ]]; then
    echo "System is RHEL, using yum to install pip3"
    sudo yum check-update
