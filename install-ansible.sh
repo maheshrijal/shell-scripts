@@ -40,6 +40,9 @@ python3 -m pip install --user ansible-lint
 echo "Install yamllint for user"
 python3 -m pip install --user yamllint
 
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    echo "On WSL | Exporting ~/.local/bin"
+    export PATH=$PATH:~/.local/bin
 
 #Checking version of tools
 echo ""
