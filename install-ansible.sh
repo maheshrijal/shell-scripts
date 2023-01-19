@@ -18,11 +18,11 @@ elif [[ $(which apt) ]]; then
 
     echo "Installing latest python version.."
     echo ""
-    sudo apt install python3
-    sudo apt install sshpass
+    sudo apt install -y -qq python3
+    sudo apt install -y -qq sshpass
     echo "Installing pip3"
     echo ""
-    sudo apt install python3-pip
+    sudo apt install -y -qq python3-pip
 
 else
     echo "Script works on debain or RedHat based systems!"
