@@ -1,5 +1,14 @@
 #!/bin/bash
 set -e
+
+# Install ansible on debian or redhat based systems
+
+# Check if user is root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
 if [[ $(which yum) ]]; then
     echo "System is RHEL, using yum to install pip3"
     sudo yum check-update
@@ -8,7 +17,7 @@ if [[ $(which yum) ]]; then
     yum install -y sshpass
     yum install -y python3
 
-    echo "Installinig pip"
+    echo "Installing pip"
     yum install -y python3-pip
 
 elif [[ $(which apt) ]]; then
@@ -38,6 +47,26 @@ if [[ $# -eq 0 ]]; then
 elif [[ $# -eq 1 ]]; then
     echo "Version passed. Installing ansible==$1"
     echo "Installing ansible for user"
+
+    # Check if version is valid
+    if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "Version is valid"
+    else
+        echo "Version is not valid! Exiting!"
+        exit 1
+    fi
+
+    # Check if version exists on pypi
+    if python3 -m pip install --user ansible=="$1" --exists-action w; then
+        echo "Version exists on pypi"
+    else
+        echo "Version does not exist on pypi!"
+        echo "Check for available versions on pypi: https://pypi.org/project/ansible/#history"
+        echo "or"
+        echo "https://pypi.org/pypi/ansible/json"
+        echo "Exiting!"
+        exit 1
+    fi
     python3 -m pip install --user ansible=="$1"
 fi
 
@@ -71,5 +100,6 @@ echo "Pip: $pipver"
 echo "Ansible: $ansiblever"
 echo "ansible-lint: $ansiblelint"
 echo "yamllint: $yamllint"
+echo ""
 
 echo "End!"
