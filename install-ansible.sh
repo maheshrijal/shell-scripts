@@ -3,12 +3,6 @@ set -e
 
 # Install ansible on debian or redhat based systems
 
-# Check if user is root
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root"
-    exit 1
-fi
-
 if [[ $(which yum) ]]; then
     echo "System is RHEL, using yum to install pip3"
     sudo yum check-update
