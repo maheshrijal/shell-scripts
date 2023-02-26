@@ -11,5 +11,5 @@ wget -O - https://raw.githubusercontent.com/maheshrjl/shell-scripts/main/install
 ### Install a specific version of Ansible
 
 ```
-wget -O - https://raw.githubusercontent.com/maheshrjl/shell-scripts/main/install-ansible.sh 2.11 | bash -s 2.10
+wget -O - https://raw.githubusercontent.com/maheshrjl/shell-scripts/main/install-ansible.sh | bash -s 2.10.0
 ```
