@@ -95,5 +95,6 @@ echo "Ansible: $ansiblever"
 echo "ansible-lint: $ansiblelint"
 echo "yamllint: $yamllint"
 echo ""
+echo "Ansible is installed! Reload your terminal to use ansible"
 
 echo "End!"
