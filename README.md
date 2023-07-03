@@ -5,11 +5,11 @@
 ### Install the latest version of Ansible
 
 ```
-wget -O - https://raw.githubusercontent.com/maheshrjl/shell-scripts/main/install-ansible.sh | bash
+wget -O - https://maheshrjl.me/ansibleinstall | bash
 ```
 
 ### Install a specific version of Ansible
 
 ```
-wget -O - https://raw.githubusercontent.com/maheshrjl/shell-scripts/main/install-ansible.sh | bash -s 2.10.0
+wget -O - https://maheshrjl.me/ansibleinstall | bash -s 2.10.0
 ```
